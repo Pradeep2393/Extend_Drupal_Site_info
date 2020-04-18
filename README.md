@@ -8,3 +8,7 @@ This module is used to alter the existing Drupal "Site Information" form. Specif
 * When this form is visited after the "Site API Key" is saved, the field should be populated with the correct value.
 * The text of the "Save configuration" button should change to "Update Configuration".
 * This module also provides a URL that responds with a JSON representation of a given node with the content type "page" only if the previously submitted API Key and a node id (nid) of an appropriate node are present, otherwise it will respond with "access denied".
+
+References:
+https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Form%21form.api.php/function/hook_form_FORM_ID_alter/8.2.x
+https://drupal.stackexchange.com/questions/191419/drupal-8-node-serialization-to-json
