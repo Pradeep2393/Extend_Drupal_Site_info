@@ -1,0 +1,6 @@
+name: Axelerant site info form
+description: Module to extend system's site-info form
+package: Custom
+type: module
+version: 1.0
+core: 8.x

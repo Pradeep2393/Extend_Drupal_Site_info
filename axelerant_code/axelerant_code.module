@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * @file
+ * This file contains basic site settings form upates.
+ */
+ 
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function axelerant_code_form_system_site_information_settings_alter(&$form, $form_state, $form_id)
+{
+    // Retrieve the existing value of siteapikey field
+	$api_default = \Drupal::configFactory()->get('system.site')->get('siteapikey');
+	
+	// Add Site API Key field to 'Site Information' section
+    $form['site_information']['siteapikey'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Site API Key'),
+        '#default_value' =>  !empty($api_default) ? $api_default: t('No API Key yet'),
+        '#description' => t('API Key to access site pages in JSON format.'),
+    );
+
+    // Change form submit button text to 'Update Configuration'
+    $form['actions']['submit']['#value'] = t('Update Configuration');
+
+    // Handle form submission
+    $form['#submit'][] = 'axelerant_code_save_form';
+}
+
+/**
+ * Implements custom form submit function for saving submitted siteapikey's value .
+ */
+function axelerant_code_save_form($form, &$form_state)
+{
+    // Update the siteapikey field with new submitted value
+    $config = \Drupal::configFactory()->getEditable('system.site');
+    $api_value = $form_state->getValue(['siteapikey']);
+    $config->set('siteapikey', $api_value);
+    $config->save();
+
+    // Site API Key save message
+	if(!empty($api_value)){
+	  drupal_set_message("Site API Key has been saved with value '" . $api_value ."'");
+	}else{
+	  drupal_set_message("Site API Key has been saved with value 'No API Key yet'");
+	}
+    
+
+}

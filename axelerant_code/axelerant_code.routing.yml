@@ -1,0 +1,12 @@
+axelerant_code.content:
+  path: '/page_json/{siteapikey_in_url}/{node_id}'
+  defaults:
+    _controller: 'Drupal\axelerant_code\Controller\SiteApiController::content'
+  options:
+    parameters:
+      siteapikey_in_url:
+        type: String
+      node_id:
+        type: entity:node
+  requirements:
+    _permission: 'access content'
