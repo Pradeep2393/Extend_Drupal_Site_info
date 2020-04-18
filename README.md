@@ -1,6 +1,6 @@
 # Extend_Drupal_Site_info
 
-This module needs to alter the existing Drupal "Site Information" form. Specifics:
+This module is used to alter the existing Drupal "Site Information" form. Specifics:
 
 * A new form text field named "Site API Key" needs to be added to the "Site Information" form with the default value of “No API Key yet”.
 * When this form is submitted, the value that the user entered for this field should be saved as the system variable named "siteapikey".
